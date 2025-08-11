@@ -1,10 +1,35 @@
-https://github.com/Sidney010/Cidades-PEND1'use strict'
+'use strict'
 
-const butaoTrocarCor = document.getElementById('trocar-cor')
+const botaoAuto = document.getElementById('auto')
+const botaoTrocar = document.getElementById('trocar')
+const cidades = [
+    "./img/Iguacu.jpg",
+    "./img/Monte.jpg",
+    "./img/Bariloche.jpg",
+    "img/Japao.jpg",
+    "img/islandia.jpg",
+    "img/Paris.jpg",
+    "img/Taiwan.jpg"
+]
 
-function trocarCor () {
-    const cor = document.getElementById('cor').value
-    document.documentElement.style.setProperty('--bg-color', cor)
+
+function trocarCidade () {
+    const cidade = document.getElementById('cidade').value
+    document.documentElement.style.setProperty('--bg-image', `url(./img/${cidade}.jpg)`)
 }
 
-butaoTrocarCor.addEventListener('click', trocarCor)
+function trocarAutomatico (){
+    //posição da imagem representada pela letra i
+    let i = 0
+
+    function slide() {
+        document.documentElement.style.setProperty('--bg-image', `url(${cidades[i]})`)
+        i++ % cidades.length
+    }
+
+    slide()
+    setInterval(slide, 3000)
+}
+
+botaoTrocar.addEventListener('click', trocarCidade)
+botaoAuto.addEventListener('click', trocarAutomatico)
